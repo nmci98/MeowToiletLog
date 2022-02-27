@@ -5,4 +5,25 @@
     android:id="@+id/main_nav"
     app:startDestination="@id/splash_fragment">
 
+    <fragment
+        android:id="@+id/splash_fragment"
+        android:name="com.meow.toilet.log.screen.n01_Splash.SplashFragment"
+        tools:layout="@layout/splash_fragment">
+
+        <action
+            android:id="@+id/action_splash_to_home"
+            app:destination="@id/footer_tab_fragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/splash_fragment"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/footer_tab_fragment"
+        android:name="com.meow.toilet.log.screen.n00_Footer.FooterTabFragment"
+        tools:layout="@layout/footer_tab_fragment">
+
+    </fragment>
+
 </navigation>

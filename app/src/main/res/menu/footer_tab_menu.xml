@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <item
+        android:id="@+id/page_home"
+        android:enabled="true"
+        android:icon="@drawable/ic_outline_home_24"
+        android:title="@string/page_home" />
+
+    <item
+        android:id="@+id/page_input"
+        android:enabled="true"
+        android:icon="@drawable/ic_outline_edit_24"
+        android:title="@string/page_input" />
+
+    <item
+        android:id="@+id/page_log"
+        android:enabled="true"
+        android:icon="@drawable/ic_outline_book_24"
+        android:title="@string/page_log" />
+
+    <item
+        android:id="@+id/page_pet"
+        android:enabled="true"
+        android:icon="@drawable/ic_outline_account_circle_24"
+        android:title="@string/page_pet"
+
+        />
+</menu>

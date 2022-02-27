@@ -81,5 +81,11 @@ class Application : Application(), Application.ActivityLifecycleCallbacks {
      * プロダクトDIモジュール
      */
     private val productModule = module {
+        viewModel { (savedState : SavedStateHandle) -> SplashViewModel(get(), savedState) }
+        viewModel { (savedState : SavedStateHandle) -> FooterTabViewModel(get(), savedState) }
+        viewModel { (savedState : SavedStateHandle) -> HomeViewModel(get(), savedState) }
+        viewModel { (savedState : SavedStateHandle) -> InputViewModel(get(), savedState) }
+        viewModel { (savedState : SavedStateHandle) -> LogViewModel(get(), savedState) }
+        viewModel { (savedState : SavedStateHandle) -> PetViewModel(get(), savedState) }
     }
 }

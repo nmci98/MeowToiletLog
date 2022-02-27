@@ -1,10 +1,11 @@
 <resources>
 
-    <!-- Base application theme. -->
 <!--    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">-->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+<!--        TODO:テーマカラーの設定-->
+        <item name="colorPrimary">@color/text_primary</item>
         <item name="colorPrimaryDark">@color/text_secondary</item>
-        <!-- Customize your theme here. -->
+        <item name="colorAccent">@color/secondary</item>
     </style>
 
     <style name="BaseText">
