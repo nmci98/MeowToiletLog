@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="fill_white">#FF34343C</color>
+    <color name="fill_light_gray">#FF47474F</color>
+    <color name="primary">#FFFFA5B6</color>
+    <color name="secondary">#FFB5E3E3</color>
+    <color name="urine_yellow">#FFEDC273</color>
+    <color name="stool_brown">#FFA67A7B</color>
+    <!--    テキスト-->
+    <color name="text_primary">#FFFFFFFF</color>
+    <color name="text_secondary">#FF75757C</color>
+    <!--    ボタン-->
+    <color name="button_primary">#FFFFA5B6</color>
+    <color name="button_disable">#FF282832</color>
+    <color name="button_press">#FF616168</color>
+    <color name="button_text_primary">#FF0F0F1A</color>
+    <color name="button_text_disable">#FF555555</color>
+</resources>

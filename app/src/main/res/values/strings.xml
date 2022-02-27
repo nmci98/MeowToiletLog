@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">にゃんトイレLOG</string>
+    <string name="urine">おしっこ</string>
+    <string name="stool">うんち</string>
+    <string name="count">回</string>
+    <string name="next">次へ</string>
+    <string name="before">前へ</string>
+    <string name="data_empty">--</string>
+    <string name="log_empty_message">ログはまだ登録されていません。</string>
+    <string name="button_register">登録する</string>
+
+    <string name="page_home">ホーム</string>
+    <string name="page_input">きろく</string>
+    <string name="page_log">ログ</string>
+    <string name="page_pet">ペット</string>
+</resources>
