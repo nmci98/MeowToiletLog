@@ -13,7 +13,7 @@ import com.meow.toilet.log.screen.n02_home.HomeFragment
 import com.meow.toilet.log.screen.n03_Input.InputFragment
 import com.meow.toilet.log.screen.n04_Log.LogFragment
 import com.meow.toilet.log.screen.n05_Pet.PetFragment
-import org.koin.androidx.viewmodel.ext.android.stateViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import timber.log.Timber
 
 class FooterTabFragment : BaseFragment() {
@@ -21,7 +21,7 @@ class FooterTabFragment : BaseFragment() {
     // region 変数
 
     /** ビューモデル */
-    private val viewModel by stateViewModel<FooterTabViewModel>()
+    private val viewModel: FooterTabViewModel by sharedViewModel()
 
     /** フラグメント（ホーム） */
     private val fragmentHome = HomeFragment()
@@ -99,6 +99,10 @@ class FooterTabFragment : BaseFragment() {
         viewModel.transitionPetTabEvent.observe(this, {
             Timber.d("transition PET tab event")
             viewModel.currentItem.postValue(3)
+        })
+
+        viewModel.targetDate.observe(this, {
+            Timber.d("target date : $it")
         })
     }
 

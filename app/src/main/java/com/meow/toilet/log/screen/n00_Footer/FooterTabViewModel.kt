@@ -5,6 +5,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.viewpager2.widget.ViewPager2
 import com.meow.toilet.log.base.BaseViewModel
 import com.meow.toilet.log.repository.DataRepository
+import java.time.LocalDate
 
 class FooterTabViewModel(
     dataRepository: DataRepository,
@@ -30,6 +31,9 @@ class FooterTabViewModel(
 
     /** ペットタブ遷移イベント */
     val transitionPetTabEvent = MutableLiveData<Unit>()
+
+    /** 表示日 */
+    val targetDate = state.getLiveData("targetDate", LocalDate.now())
 
     // endregion 変数
 

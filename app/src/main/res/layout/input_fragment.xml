@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- 03_きろく画面 レイアウト -->
+<layout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.meow.toilet.log.screen.n03_Input.InputViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/fill_white">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/target_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/before"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:contentDescription="@string/before"
+                android:onClick="@{ () -> viewModel.onClickBefore() }"
+                android:src="@drawable/ic_baseline_navigate_before_24"
+                app:layout_constraintEnd_toStartOf="@id/date"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!--            TODO:日付をタップすると、カレンダーが出てきて離れた日に飛べるとよいかも-->
+            <TextView
+                android:id="@+id/date"
+                style="@style/BaseText.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/next"
+                app:layout_constraintStart_toEndOf="@id/before"
+                app:layout_constraintTop_toTopOf="parent"
+                app:text="@{ viewModel.displayDate }"
+                tools:text="2022年1月1日(日)" />
+
+            <ImageView
+                android:id="@+id/next"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:contentDescription="@string/next"
+                android:onClick="@{ () -> viewModel.onClickNext() }"
+                android:src="@drawable/ic_baseline_navigate_next_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/date"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/target_date">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/fill_white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/urine_input_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/urine_icon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:contentDescription="@string/urine"
+                        android:src="@drawable/ic_urine"
+                        app:layout_constraintEnd_toStartOf="@id/urine_text"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/urine_text"
+                        app:tint="@color/urine_yellow" />
+
+                    <TextView
+                        android:id="@+id/urine_text"
+                        style="@style/BaseText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/urine"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/urine_number_picker"
+                        app:layout_constraintStart_toEndOf="@id/urine_icon"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <NumberPicker
+                        android:id="@+id/urine_number_picker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:textSize="@dimen/text_size_text"
+                        android:value="@{ viewModel.inputCountUrine }"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/urine_count"
+                        app:layout_constraintStart_toEndOf="@id/urine_text"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/urine_count"
+                        style="@style/BaseText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/count"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/urine_number_picker"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/stool_input_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/urine_input_view">
+
+                    <ImageView
+                        android:id="@+id/stool_icon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:contentDescription="@string/stool"
+                        android:src="@drawable/ic_stool"
+                        app:layout_constraintEnd_toStartOf="@id/stool_text"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/stool_text"
+                        app:tint="@color/stool_brown" />
+
+                    <TextView
+                        android:id="@+id/stool_text"
+                        style="@style/BaseText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/stool"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/stool_number_picker"
+                        app:layout_constraintStart_toEndOf="@id/stool_icon"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <NumberPicker
+                        android:id="@+id/stool_number_picker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:textSize="@dimen/text_size_text"
+                        android:value="@{ viewModel.inputCountStool }"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/stool_count"
+                        app:layout_constraintStart_toEndOf="@id/stool_text"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/stool_count"
+                        style="@style/BaseText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/count"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/stool_number_picker"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <Button
+                    style="@style/BaseButton.Primary"
+                    android:layout_width="180dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:onClick="@{ () -> viewModel.onClickRegister() }"
+                    android:text="@string/button_register"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/stool_input_view" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
