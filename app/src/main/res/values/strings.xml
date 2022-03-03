@@ -5,7 +5,11 @@
     <string name="count">回</string>
     <string name="next">次へ</string>
     <string name="before">前へ</string>
+    <string name="edit">編集する</string>
     <string name="data_empty">--</string>
+    <string name="weight">体重</string>
+    <string name="age">年齢</string>
+    <string name="unit_kg">kg</string>
     <string name="log_empty_message">ログはまだ登録されていません。</string>
     <string name="button_register">登録する</string>
 

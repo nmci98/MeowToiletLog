@@ -1,6 +1,7 @@
 package com.meow.toilet.log.repository
 
 import com.meow.toilet.log.repository.local.AppDatabase
+import com.meow.toilet.log.repository.local.entity.PetProfile
 import com.meow.toilet.log.repository.local.entity.StoolLog
 import com.meow.toilet.log.repository.local.entity.UrineLog
 import timber.log.Timber
@@ -18,23 +19,38 @@ class DataRepository(
     // region データベース
 
     /**
-     * トイレログ保存処理.
-     * @param urineData トイレログデータ
+     * ペットプロファイルテーブル監視処理.
      */
-    fun updateToiletLog(targetDate: LocalDate, urineData: UrineLog, stoolData: StoolLog) {
-        Timber.d("updateToiletLog : $urineData $stoolData")
-        // 対象日のレコードを全て削除する
-        appDatabase.getUrineLogDao().delete(targetDate.toString())
-        appDatabase.getStoolLogDao().delete(targetDate.toString())
+    fun observePetProfile() = appDatabase.getPetProfileDao().observe()
 
-        // おしっこの回数を更新する
-        appDatabase.getUrineLogDao().insert(urineData)
-        // うんちの回数を更新する
-        appDatabase.getStoolLogDao().insert(stoolData)
+    /**
+     * ペットプロファイル保存処理.
+     */
+    fun insertPetProfile(petProfile: PetProfile) {
+        appDatabase.getPetProfileDao().insert(petProfile)
     }
 
-//    fun observeUrineLog() = appDatabase.getUrineLogDao().observe()
-//    fun observeStoolLog() = appDatabase.getStoolLogDao().observe()
+    /**
+     * トイレログ保存処理.
+     * @param targetDate 対象日
+     * @param urineData おしっこログデータ
+     * @param stoolData うんちログデータ
+     */
+    fun updateToiletLog(targetDate: LocalDate, urineData: UrineLog?, stoolData: StoolLog?) {
+        Timber.d("updateToiletLog : $urineData $stoolData")
+        urineData?.let {
+            // 対象日のレコードを削除する
+            appDatabase.getUrineLogDao().delete(targetDate.toString())
+            // おしっこの回数を更新する
+            appDatabase.getUrineLogDao().insert(urineData)
+        }
+        stoolData?.let {
+            // 対象日のレコードを削除する
+            appDatabase.getStoolLogDao().delete(targetDate.toString())
+            // うんちの回数を更新する
+            appDatabase.getStoolLogDao().insert(stoolData)
+        }
+    }
 
     /**
      * トイレログデータ取得処理.

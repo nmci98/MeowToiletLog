@@ -7,7 +7,11 @@ import com.meow.toilet.log.base.BaseFragment
 import com.meow.toilet.log.base.BaseViewModel
 import com.meow.toilet.log.databinding.HomeFragmentBinding
 import org.koin.androidx.viewmodel.ext.android.stateViewModel
+import timber.log.Timber
 
+/**
+ * 02_ホーム画面 フラグメント.
+ */
 class HomeFragment : BaseFragment() {
 
     // region 変数
@@ -27,7 +31,17 @@ class HomeFragment : BaseFragment() {
         it.viewModel = viewModel
     }.root
 
-    // endregion レイフサイクル
+    override fun observe() {
+        super.observe()
+
+        viewModel.observePetProfile.observe(this, {
+            Timber.d("observe PetProfile : $it")
+            // ペットプロファイルを設定する
+            viewModel.petProfile.postValue(PetProfileData(it))
+        })
+    }
+
+    // endregion ライフサイクル
 
     // region 継承
 

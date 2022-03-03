@@ -1,5 +1,6 @@
 package com.meow.toilet.log.repository.local.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -13,4 +14,7 @@ abstract class PetProfileDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insert(data: PetProfile)
+
+    @Query(" SELECT * FROM PetProfile")
+    abstract fun observe(): LiveData<PetProfile>
 }

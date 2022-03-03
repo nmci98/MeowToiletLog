@@ -20,13 +20,22 @@
 
     <style name="BaseButton" parent="Widget.MaterialComponents.Button.UnelevatedButton">
         <item name="android:textSize">@dimen/text_size_text</item>
+        <item name="android:textColor">@color/button_text_primary</item>
         <item name="android:padding">16dp</item>
-        <item name="cornerRadius">4dp</item>
+        <item name="cornerRadius">24dp</item>
     </style>
 
     <style name="BaseButton.Primary">
-        <item name="android:textAppearanceButton">@color/selector_color_button_primary_text</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/selector_color_button_primary_text</item>
         <item name="backgroundTint">@color/selector_color_button_primary_background</item>
+    </style>
+
+    <style name="BaseButton.Secondary">
+        <item name="android:textColor">@color/selector_color_button_secondary_text</item>
+        <item name="strokeColor">@color/button_stroke</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="backgroundTint">@color/selector_color_button_secondary_background</item>
     </style>
 
 </resources>

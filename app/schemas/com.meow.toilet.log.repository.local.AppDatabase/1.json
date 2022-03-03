@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "a9cb0c2c5d91cabde4b3cd38166593d8",
+    "identityHash": "a2ebfc76d4821090830aff5e43aced16",
     "entities": [
       {
         "tableName": "PetProfile",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `dateOfBirth` TEXT, `gender` INTEGER, `bleed` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `name` TEXT NOT NULL, `dateOfBirth` TEXT NOT NULL, `gender` INTEGER NOT NULL, `breed` TEXT, `weight` REAL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -24,18 +24,24 @@
             "fieldPath": "dateOfBirth",
             "columnName": "dateOfBirth",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "gender",
             "columnName": "gender",
             "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "breed",
+            "columnName": "breed",
+            "affinity": "TEXT",
             "notNull": false
           },
           {
-            "fieldPath": "bleed",
-            "columnName": "bleed",
-            "affinity": "TEXT",
+            "fieldPath": "weight",
+            "columnName": "weight",
+            "affinity": "REAL",
             "notNull": false
           }
         ],
@@ -43,7 +49,7 @@
           "columnNames": [
             "id"
           ],
-          "autoGenerate": true
+          "autoGenerate": false
         },
         "indices": [],
         "foreignKeys": []
@@ -140,7 +146,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a9cb0c2c5d91cabde4b3cd38166593d8')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a2ebfc76d4821090830aff5e43aced16')"
     ]
   }
 }

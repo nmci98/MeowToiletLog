@@ -11,8 +11,11 @@
     <color name="text_secondary">#FF75757C</color>
     <!--    ボタン-->
     <color name="button_primary">#FFFFA5B6</color>
+    <color name="button_secondary">#FFFFFFFF</color>
     <color name="button_disable">#FFEEEEEE</color>
     <color name="button_press">#FFD6D6D8</color>
     <color name="button_text_primary">#FFFFFFFF</color>
+    <color name="button_text_secondary">#FF333333</color>
     <color name="button_text_disable">#FF999999</color>
+    <color name="button_stroke">#FF75757C</color>
 </resources>
