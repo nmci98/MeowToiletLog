@@ -8,6 +8,16 @@
         <item name="colorAccent">@color/secondary</item>
     </style>
 
+    <style name="ToolbarTheme" parent="Theme.MaterialComponents.Light">
+        <item name="android:background">@color/fill_white</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_primary</item>
+    </style>
+
+    <style name="ToolbarTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">@dimen/text_size_title_jp</item>
+    </style>
+
     <style name="BaseText">
         <item name="android:textSize">@dimen/text_size_text</item>
         <item name="android:textColor">@color/text_primary</item>
