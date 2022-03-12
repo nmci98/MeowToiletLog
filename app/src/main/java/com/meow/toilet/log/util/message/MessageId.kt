@@ -15,5 +15,6 @@ enum class MessageId(
     val negativeButtonText: String?,
 ) {
     C00001(null, "ログを登録しました。", "OK", null),
+    C00002(null, "ペット情報を登録します。よろしいですか？", "登録する", "キャンセル"),
     E00001(null, "内部エラーが発生しました。時間をおいてからお試しください。", "OK", null),
 }

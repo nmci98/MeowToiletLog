@@ -45,9 +45,16 @@ data class PetProfile(
     )
 }
 
+/**
+ * 性別.
+ */
 enum class Gender(val value: Int, val symbol: String) {
+    /** オス */
     MALE(0, "♂"),
-    FEMALE(1, "♀")
+    /** メス */
+    FEMALE(1, "♀"),
+    /** その他 */
+    UNKNOWN(2, "")
     ;
 
     companion object {

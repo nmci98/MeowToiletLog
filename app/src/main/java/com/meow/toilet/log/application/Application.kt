@@ -15,6 +15,7 @@ import com.meow.toilet.log.screen.n02_home.HomeViewModel
 import com.meow.toilet.log.screen.n03_Input.InputViewModel
 import com.meow.toilet.log.screen.n04_Log.LogViewModel
 import com.meow.toilet.log.screen.n05_Pet.PetViewModel
+import com.meow.toilet.log.screen.n06_Profile.ProfileViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
@@ -87,5 +88,6 @@ class Application : Application(), Application.ActivityLifecycleCallbacks {
         viewModel { (savedState : SavedStateHandle) -> InputViewModel(get(), savedState) }
         viewModel { (savedState : SavedStateHandle) -> LogViewModel(get(), savedState) }
         viewModel { (savedState : SavedStateHandle) -> PetViewModel(get(), savedState) }
+        viewModel { (savedState : SavedStateHandle) -> ProfileViewModel(get(), savedState) }
     }
 }

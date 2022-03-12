@@ -3,9 +3,9 @@
 <!--    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">-->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
 <!--        TODO:テーマカラーの設定-->
-        <item name="colorPrimary">@color/text_primary</item>
+        <item name="colorPrimary">@color/text_secondary</item>
         <item name="colorPrimaryDark">@color/text_secondary</item>
-        <item name="colorAccent">@color/secondary</item>
+        <item name="colorAccent">@color/primary</item>
     </style>
 
     <style name="ToolbarTheme" parent="Theme.MaterialComponents.Light">
@@ -16,6 +16,14 @@
 
     <style name="ToolbarTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textSize">@dimen/text_size_title_jp</item>
+    </style>
+
+    <style name="EditTextFilled" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <!-- ポインターと下線の色 -->
+<!--        <item name="colorPrimary">@color/primary</item>-->
+        <!-- 入力前のヒント（プレースホルダー）の色 -->
+        <item name="android:textColorHint">@color/text_secondary</item>
+        <item name="boxBackgroundColor">@color/fill_white</item>
     </style>
 
     <style name="BaseText">
@@ -46,6 +54,20 @@
         <item name="strokeColor">@color/button_stroke</item>
         <item name="strokeWidth">1dp</item>
         <item name="backgroundTint">@color/selector_color_button_secondary_background</item>
+    </style>
+
+    <style name="SpinnerDatePickerStyle" parent="Theme.MaterialComponents.Light.Dialog">
+        <item name="android:datePickerMode">spinner</item>
+        <item name="android:calendarViewShown">false</item>
+    </style>
+
+    <style name="SpinnerButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/primary</item>
+    </style>
+
+    <style name="DatePickerDialogSpinner" parent="Theme.MaterialComponents.Light.Dialog">
+        <item name="android:datePickerStyle">@style/SpinnerDatePickerStyle</item>
+        <item name="materialButtonStyle">@style/SpinnerButtonStyle</item>
     </style>
 
 </resources>

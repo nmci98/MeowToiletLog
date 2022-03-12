@@ -29,6 +29,22 @@ abstract class BaseFragment : Fragment(), BaseDialogFragment.DialogListener {
     @CallSuper
     open fun observe() = Unit
 
+    /**
+     * キーボードを閉じる.
+     */
+    fun hideKeyboard() {
+        val focusView = activity?.currentFocus
+        focusView?.let {
+            val inputMethodManager =
+                activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            // ソフトキーボードを閉じる
+            inputMethodManager.hideSoftInputFromWindow(
+                it.windowToken,
+                InputMethodManager.HIDE_NOT_ALWAYS
+            )
+        }
+    }
+
     // endregion 公開
 
     // region ライフサイクル

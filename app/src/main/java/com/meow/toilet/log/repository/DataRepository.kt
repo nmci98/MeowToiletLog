@@ -24,10 +24,15 @@ class DataRepository(
     fun observePetProfile() = appDatabase.getPetProfileDao().observe()
 
     /**
+     * ペットプロファイル取得処理.
+     */
+    fun getPetProfile() = appDatabase.getPetProfileDao().select()
+
+    /**
      * ペットプロファイル保存処理.
      */
-    fun insertPetProfile(petProfile: PetProfile) {
-        appDatabase.getPetProfileDao().insert(petProfile)
+    fun savePetProfile(petProfile: PetProfile) {
+        appDatabase.getPetProfileDao().deleteAndInsert(petProfile)
     }
 
     /**

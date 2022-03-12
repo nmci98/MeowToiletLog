@@ -32,6 +32,15 @@ fun TextView.setText(value: LocalDate?) {
     }
 }
 
+@BindingAdapter("text", "patternResId")
+fun TextView.setText(value: LocalDate?, patternResId: Int) {
+    this.text = try {
+        value?.format(DateTimeFormatter.ofPattern(context.getString(patternResId), Locale.JAPANESE)) ?: context.getString(R.string.data_empty)
+    } catch (t: Throwable) {
+        context.getString(R.string.data_empty)
+    }
+}
+
 //@BindingAdapter("text")
 //fun TextView.setText(value: LocalDateTime) {
 //    this.text = try {
