@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class SplashViewModel(
-    dataRepository: DataRepository,
+    val dataRepository: DataRepository,
     state: SavedStateHandle
 ) : BaseViewModel(state) {
 
@@ -25,8 +25,17 @@ class SplashViewModel(
         // TODO:API通信など
         delay(6000L)
 
-        // ホーム画面に遷移する
-        transitionEvent.postValue(SplashFragmentDirections.actionSplashToHome())
+        dataRepository.getPetProfile()?.let {
+            // プロファイルが登録されている場合は、ホーム画面に遷移する
+            transitionEvent.postValue(SplashFragmentDirections.actionSplashFragmentToHomeFragment())
+        } ?: also {
+            // プロファイルが登録されていない場合は、プロファイル画面に遷移する
+            transitionEvent.postValue(
+                SplashFragmentDirections.actionSplashFragmentToProfileFragment(
+                    fromSplash = true
+                )
+            )
+        }
     }
 
     // end region 公開

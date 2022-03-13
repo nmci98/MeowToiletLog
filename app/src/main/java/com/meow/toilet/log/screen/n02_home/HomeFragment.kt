@@ -36,8 +36,10 @@ class HomeFragment : BaseFragment() {
 
         viewModel.observePetProfile.observe(this, {
             Timber.d("observe PetProfile : $it")
-            // ペットプロファイルを設定する
-            viewModel.petProfile.postValue(PetProfileData(it))
+            it?.let {
+                // ペットプロファイルを設定する
+                viewModel.petProfile.postValue(PetProfileData(it))
+            }
         })
     }
 

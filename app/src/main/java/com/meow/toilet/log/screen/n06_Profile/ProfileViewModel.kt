@@ -96,8 +96,9 @@ class ProfileViewModel(
 
     /**
      * ペットプロファイル保存処理.
+     * @param fromSplash スプラッシュからの遷移かどうか
      */
-    fun savePetProfile() = viewModelScope.launch(Dispatchers.IO) {
+    fun savePetProfile(fromSplash: Boolean) = viewModelScope.launch(Dispatchers.IO) {
         try {
             // ペットプロファイルを保存する
             dataRepository.savePetProfile(
@@ -109,7 +110,13 @@ class ProfileViewModel(
                     if (!weight.value.isNullOrBlank()) weight.value?.toDoubleOrNull() else null
                 )
             )
-
+            if (fromSplash) {
+                // スプラッシュからの遷移の場合、ホーム画面に遷移する
+                transitionEvent.postValue(ProfileFragmentDirections.actionProfileFragmentToHomeFragment())
+            } else {
+                // スプラッシュ画面からの遷移ではない場合、一つ前の画面に戻る
+                transitionBackEvent.postValue(Unit)
+            }
         } catch (t: Throwable) {
             Timber.e(t)
             // エラーダイアログを表示する

@@ -1,22 +1,19 @@
 package com.meow.toilet.log.screen.n02_home
 
 import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
 import com.meow.toilet.log.base.BaseViewModel
 import com.meow.toilet.log.base.DialogData
 import com.meow.toilet.log.repository.DataRepository
-import com.meow.toilet.log.repository.local.entity.Gender
-import com.meow.toilet.log.repository.local.entity.PetProfile
 import com.meow.toilet.log.repository.local.entity.StoolLog
 import com.meow.toilet.log.repository.local.entity.UrineLog
+import com.meow.toilet.log.screen.n00_Footer.FooterTabFragmentDirections
 import com.meow.toilet.log.util.message.MessageId
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.time.LocalDate
 import java.time.LocalDateTime
-import java.time.temporal.ChronoUnit
 
 /**
  * 02_ホーム画面 ビューモデル.
@@ -63,7 +60,7 @@ class HomeViewModel(
      * 編集ボタンタップ処理.
      */
     fun onClickEdit() {
-        // TODO:プロファイル編集画面に遷移する
+        transitionEvent.postValue(FooterTabFragmentDirections.actionHomeFragmentToProfileFragment(fromSplash = false))
     }
 
     /**

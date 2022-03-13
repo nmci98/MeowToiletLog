@@ -3,6 +3,8 @@ package com.meow.toilet.log.screen.n06_Profile
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.navArgs
 import com.google.android.material.textfield.TextInputLayout
 import com.meow.toilet.log.R
 import com.meow.toilet.log.base.BaseFragment
@@ -20,6 +22,9 @@ import java.time.Month
 class ProfileFragment : BaseFragment(), DatePickerFragment.OnDateSelectedListener {
 
     // region 変数
+
+    /** 画面引数 */
+    private val args: ProfileFragmentArgs by navArgs()
 
     /** ビューモデル */
     private val viewModel by stateViewModel<ProfileViewModel>()
@@ -44,6 +49,11 @@ class ProfileFragment : BaseFragment(), DatePickerFragment.OnDateSelectedListene
         it.pickerTextDateOfBirth.setOnClickListener {
             // ピッカーを設定する
             DatePickerFragment(viewModel.dateOfBirth.value).show(childFragmentManager, "datePicker")
+        }
+
+        (this.activity as AppCompatActivity).supportActionBar?.also { actionBar ->
+            // スプラッシュからの遷移の場合は戻るボタンを表示しない
+            actionBar.setDisplayHomeAsUpEnabled(args.fromSplash.not())
         }
     }.root
 
@@ -81,12 +91,14 @@ class ProfileFragment : BaseFragment(), DatePickerFragment.OnDateSelectedListene
                 // キーボードを閉じる
                 hideKeyboard()
                 // ペットプロファイルを保存する
-                viewModel.savePetProfile()
+                viewModel.savePetProfile(args.fromSplash)
             }
         }
     }
 
     override fun getViewModel(): BaseViewModel = viewModel
+
+    override val title = R.string.title_profile
 
     // endregion 継承
 }
