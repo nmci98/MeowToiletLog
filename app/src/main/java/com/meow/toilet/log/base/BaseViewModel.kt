@@ -18,6 +18,9 @@ abstract class BaseViewModel(state: SavedStateHandle) :ViewModel(){
     /** 画面遷移 */
     val transitionEvent = MutableLiveData<NavDirections>()
 
+    /** 画面遷移(戻る) */
+    val transitionBackEvent = MutableLiveData<Unit>()
+
     /** ダイアログ表示イベント */
     val showDialogEvent = MutableLiveData<DialogData>()
 

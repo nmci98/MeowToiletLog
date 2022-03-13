@@ -1,12 +1,16 @@
 package com.meow.toilet.log.base
 
+import android.content.Context
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import androidx.annotation.CallSuper
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.meow.toilet.log.activity.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.stateViewModel
 import timber.log.Timber
+import androidx.appcompat.app.AppCompatActivity
+
 
 /**
  * 基底フラグメント.
@@ -52,6 +56,12 @@ abstract class BaseFragment : Fragment(), BaseDialogFragment.DialogListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         observeInternal()
+
+        // アクションバーを設定する
+        (this.activity as AppCompatActivity).supportActionBar?.also { actionBar ->
+            actionBar.title = title?.let { getString(it) }
+            actionBar.setDisplayHomeAsUpEnabled(isUpEnabled)
+        }
     }
 
     // endregion ライフサイクル
@@ -62,6 +72,16 @@ abstract class BaseFragment : Fragment(), BaseDialogFragment.DialogListener {
      * ビューモデル取得処理.
      */
     abstract fun getViewModel(): BaseViewModel
+
+    /**
+     * タイトル.
+     */
+    open val title :Int? = null
+
+    /**
+     * 戻るボタン.
+     */
+    open val isUpEnabled :Boolean = true
 
     /**
      * ダイアログ ポジティブボタン押下時処理.
@@ -95,7 +115,11 @@ abstract class BaseFragment : Fragment(), BaseDialogFragment.DialogListener {
         getViewModel().transitionEvent.observe(this, { action ->
             Timber.d("transition event $action")
             findNavController().navigate(action)
+        })
 
+        getViewModel().transitionBackEvent.observe(this, {
+            Timber.d("transition back event")
+            findNavController().popBackStack()
         })
 
         getViewModel().showDialogEvent.observe(this, { dialog ->
