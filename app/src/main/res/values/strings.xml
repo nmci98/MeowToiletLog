@@ -1,0 +1,37 @@
+<resources>
+
+    <!-- 共通 -->
+    <string name="app_name">にゃんトイレLOG</string>
+    <string name="urine">おしっこ</string>
+    <string name="stool">うんち</string>
+    <string name="count">回</string>
+    <string name="next">次へ</string>
+    <string name="before">前へ</string>
+    <string name="data_empty">--</string>
+    <string name="button_register">登録する</string>
+    <string name="format_yyyyMd">yyyy年M月d日</string>
+    <!-- ホーム -->
+    <string name="page_home">ホーム</string>
+    <string name="edit">編集する</string>
+    <string name="weight">体重</string>
+    <string name="age">年齢</string>
+    <string name="unit_kg">kg</string>
+    <!-- きろく -->
+    <string name="page_input">きろく</string>
+    <!-- ログ -->
+    <string name="log_empty_message">ログはまだ登録されていません。</string>
+    <string name="page_log">ログ</string>
+    <!-- ペット -->
+    <string name="page_pet">ペット</string>
+    <!-- プロファイル -->
+    <string name="title_profile">ペットの情報</string>
+    <string name="hint_name">名前（必須）</string>
+    <string name="hint_breed">種類</string>
+    <string name="hint_gender">性別（必須）</string>
+    <string name="hint_date_of_birth">誕生日（必須）</string>
+    <string name="hint_weight">体重（kg）</string>
+    <string name="gender_male">オス</string>
+    <string name="gender_female">メス</string>
+    <string name="gender_other">その他</string>
+    <string name="input_error_name">名前を入力してください</string>
+</resources>

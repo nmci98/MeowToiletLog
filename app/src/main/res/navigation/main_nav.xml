@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/splash_fragment">
+
+    <fragment
+        android:id="@+id/splash_fragment"
+        android:name="com.meow.toilet.log.screen.n01_Splash.SplashFragment"
+        tools:layout="@layout/splash_fragment">
+
+        <action
+            android:id="@+id/action_splash_fragment_to_home_fragment"
+            app:destination="@id/footer_tab_fragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/splash_fragment"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_splash_fragment_to_profile_fragment"
+            app:destination="@id/profile_fragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/splash_fragment"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/footer_tab_fragment"
+        android:name="com.meow.toilet.log.screen.n00_Footer.FooterTabFragment"
+        tools:layout="@layout/footer_tab_fragment">
+
+        <action
+            android:id="@+id/action_home_fragment_to_profile_fragment"
+            app:destination="@id/profile_fragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/profile_fragment"
+        android:name="com.meow.toilet.log.screen.n06_Profile.ProfileFragment"
+        tools:layout="@layout/profile_fragment">
+
+        <action
+            android:id="@+id/action_profile_fragment_to_home_fragment"
+            app:destination="@id/footer_tab_fragment"
+            app:popUpTo="@id/profile_fragment"
+            app:popUpToInclusive="true"
+            />
+
+        <argument
+            android:name="fromSplash"
+            app:argType="boolean"
+            />
+
+    </fragment>
+
+</navigation>
