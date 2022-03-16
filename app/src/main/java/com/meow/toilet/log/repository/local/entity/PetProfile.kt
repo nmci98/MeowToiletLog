@@ -13,6 +13,7 @@ import java.time.LocalDate
  * @param gender 性別
  * @param breed 種類
  * @param weight 体重
+ * @param profileImageUri プロファイル画像URL
  */
 @Entity
 @TypeConverters(LocalDateConverter::class)
@@ -22,7 +23,8 @@ data class PetProfile(
     val dateOfBirth: LocalDate,
     val gender: Int,
     val breed: String?,
-    val weight: Double?
+    val weight: Double?,
+    val profileImageUri: String?
 ) {
 
     companion object {
@@ -34,14 +36,16 @@ data class PetProfile(
         dateOfBirth: LocalDate,
         gender: Int,
         breed: String?,
-        weight: Double?
+        weight: Double?,
+        profileImage: String?
     ) : this(
         ONLY_ONE_ID,
         name = name,
         dateOfBirth = dateOfBirth,
         gender = gender,
         breed = breed,
-        weight = weight
+        weight = weight,
+        profileImageUri = profileImage
     )
 }
 

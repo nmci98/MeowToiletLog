@@ -1,11 +1,11 @@
 package com.meow.toilet.log.screen.n02_home
 
+import android.net.Uri
 import android.os.Parcelable
 import com.meow.toilet.log.repository.local.entity.Gender
 import com.meow.toilet.log.repository.local.entity.PetProfile
 import kotlinx.parcelize.Parcelize
 import timber.log.Timber
-import java.lang.IllegalArgumentException
 import java.time.LocalDate
 import java.time.Period
 
@@ -17,6 +17,7 @@ import java.time.Period
  * @param gender 性別
  * @param breed 種類
  * @param weight 体重
+ * @param profileImageUri プロファイル画像URL
  */
 @Parcelize
 data class PetProfileData(
@@ -25,7 +26,8 @@ data class PetProfileData(
     val age: String?,
     val gender: String?,
     val breed: String?,
-    val weight: String?
+    val weight: String?,
+    val profileImageUri: Uri?
 ) : Parcelable {
 
     constructor(petProfile: PetProfile) : this(
@@ -41,6 +43,12 @@ data class PetProfileData(
         },
         gender = Gender.from(petProfile.gender)?.symbol,
         breed = petProfile.breed,
-        weight = petProfile.weight?.toString()
+        weight = petProfile.weight?.toString(),
+        profileImageUri = try {
+            petProfile.profileImageUri?.let { Uri.parse(it) }
+        } catch (e: Exception) {
+            Timber.e(e)
+            null
+        }
     )
 }

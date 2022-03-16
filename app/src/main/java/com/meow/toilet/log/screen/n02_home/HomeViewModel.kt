@@ -27,7 +27,7 @@ class HomeViewModel(
 
     companion object {
         /** きろく成功ダイアログ */
-        const val DIALOG_ID_INPUT_SUCCESSFUL = "DIALOG_ID_INPUT_SUCCESSFUL"
+        const val DIALOG_ID_INPUT_LOG_SUCCESSFUL = "DIALOG_ID_INPUT_LOG_SUCCESSFUL"
 
         /** エラーダイアログ */
         const val DIALOG_ID_ERROR = "DIALOG_ID_ERROR"
@@ -118,7 +118,7 @@ class HomeViewModel(
             // 登録成功ダイアログを表示する
             showDialogEvent.postValue(
                 DialogData(
-                    DIALOG_ID_INPUT_SUCCESSFUL,
+                    DIALOG_ID_INPUT_LOG_SUCCESSFUL,
                     MessageId.C00001
                 )
             )
