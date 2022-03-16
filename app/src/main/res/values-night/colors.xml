@@ -2,6 +2,7 @@
 <resources>
     <color name="fill_white">#FF34343C</color>
     <color name="fill_light_gray">#FF47474F</color>
+    <color name="fill_gray">#FF555555</color>
     <color name="primary">#FFFFA5B6</color>
     <color name="secondary">#FFB5E3E3</color>
     <color name="urine_yellow">#FFEDC273</color>

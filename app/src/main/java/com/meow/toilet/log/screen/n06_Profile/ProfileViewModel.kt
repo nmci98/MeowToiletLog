@@ -1,5 +1,6 @@
 package com.meow.toilet.log.screen.n06_Profile
 
+import android.net.Uri
 import androidx.lifecycle.*
 import com.meow.toilet.log.base.BaseViewModel
 import com.meow.toilet.log.base.DialogData
@@ -24,7 +25,8 @@ class ProfileViewModel(
 
     companion object {
         /** ペットプロファイル登録確認ダイアログ */
-        const val DIALOG_ID_CONFIRM_REGISTERING_PET_PROFILE = "DIALOG_ID_CONFIRM_REGISTERING_PET_PROFILE"
+        const val DIALOG_ID_CONFIRM_REGISTERING_PET_PROFILE =
+            "DIALOG_ID_CONFIRM_REGISTERING_PET_PROFILE"
 
         /** エラーダイアログ */
         const val DIALOG_ID_ERROR = "DIALOG_ID_ERROR"
@@ -48,6 +50,9 @@ class ProfileViewModel(
 
     /** 体重(任意) */
     val weight = MutableLiveData<String>()
+
+    /** プロファイル画像URL */
+    val profileImageUrl = MutableLiveData<Uri>()
 
     /** 登録ボタン活性状態 */
     val buttonEnabledState = MediatorLiveData<Boolean>()
@@ -91,6 +96,15 @@ class ProfileViewModel(
             // RadioButtonに設定する
             gender.postValue(Gender.from(it.gender))
             weight.postValue(it.weight?.toString())
+            try {
+                // ImageViewに設定する
+                it.profileImageUri?.let { uri -> Uri.parse(uri) }
+            } catch (t: Throwable) {
+                Timber.e(t)
+                null
+            }.apply {
+                profileImageUrl.postValue(this)
+            }
         }
     }
 
@@ -107,7 +121,8 @@ class ProfileViewModel(
                     dateOfBirth.value ?: LocalDate.now(), // 誕生日は必須のためnullがくることはない
                     gender.value?.value ?: Gender.UNKNOWN.value, // 性別は必須のためnullがくることはない
                     if (!breed.value.isNullOrBlank()) breed.value else null,
-                    if (!weight.value.isNullOrBlank()) weight.value?.toDoubleOrNull() else null
+                    if (!weight.value.isNullOrBlank()) weight.value?.toDoubleOrNull() else null,
+                    profileImageUrl.value?.toString()
                 )
             )
             if (fromSplash) {

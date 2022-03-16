@@ -3,6 +3,7 @@ package com.meow.toilet.log.screen.n06_Profile
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.textfield.TextInputLayout
@@ -32,6 +33,15 @@ class ProfileFragment : BaseFragment(), DatePickerFragment.OnDateSelectedListene
     /** 名前入力 */
     private lateinit var nameTextInput: TextInputLayout
 
+    /** コンテンツ選択のIntent */
+    private val launcher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+        uri?.let {
+            Timber.d("$uri")
+            // プロフィール画像URLを設定する
+            viewModel.profileImageUrl.postValue(uri)
+        }
+    }
+
     // endregion 変数
 
     // region ライフサイクル
@@ -49,6 +59,11 @@ class ProfileFragment : BaseFragment(), DatePickerFragment.OnDateSelectedListene
         it.pickerTextDateOfBirth.setOnClickListener {
             // ピッカーを設定する
             DatePickerFragment(viewModel.dateOfBirth.value).show(childFragmentManager, "datePicker")
+        }
+
+        it.petImage.setOnClickListener {
+            // コンテンツ選択のIntentを発行する
+            launcher.launch("image/*")
         }
 
         (this.activity as AppCompatActivity).supportActionBar?.also { actionBar ->
